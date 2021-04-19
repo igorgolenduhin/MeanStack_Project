@@ -1,27 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 import { useState } from "react";
-import CreatePostForm from "./CreatePostForm";
 import Post from "./Post";
 
 const Posts = () => {
 
     const [posts, setPosts] = useState([]);
 
-    const handleCreatePost = (newPost) => {
-        setPosts([
-            ...posts,
-            newPost
-        ]);
-    };
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_BACKEND_URL + 'posts').then((response) => {
+            setPosts(response.data);
+            console.log(response);
+        });
+    },[]);
 
     return (
 
         <div>
             {posts.map((p) => (
-                <Post post={p}/> 
+                <Post post={p} key={p._id}/> 
             ))}
-            <CreatePostForm createPost={handleCreatePost}/>
         </div>
      
     );
