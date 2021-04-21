@@ -30,9 +30,11 @@ const Header = (props) => {
 
                     <Button color="inherit" href="/posts">Posts</Button>
                     <Button color="inherit" href="/createPost">Create Post</Button>
-                    <Button color="inherit" href="/Categories">Categories</Button>
+                    <Button color="inherit" href="/categories">Categories</Button>
                     <Button color="inherit" href="/contactUs">Contact Us</Button>
                     <Button color="inherit" href="/browse">Browse</Button>
+                    <Button color="inherit" href="/trending">Trending Posts</Button>
+                    <Button color="inherit" href="/createCategory">Create Category</Button>
 
                     <span className="spacer"/>
                     {auth.isLoggedIn &&
@@ -40,6 +42,7 @@ const Header = (props) => {
                             <Button
                                 color="inherit"
                                 startIcon={<AccountCircle/>}
+                                href={"/user/" + auth.currentUser.userId}
                             >
                                 {auth.currentUser.username}
                             </Button>

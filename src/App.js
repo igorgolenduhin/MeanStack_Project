@@ -11,8 +11,11 @@ import Categories from './components/categories/Categories';
 import ContactForm from './components/ContactForm';
 import ReactNotifications from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
+import Trending from './components/Trending';
+import CreateCategory from './components/categories/CreateCategory';
 import { useCallback, useEffect, useState } from 'react';
 import AuthContext from './contexts/AuthContext';
+import UserPosts from './components/posts/UserPosts';
 
 const App = () => {
 
@@ -36,11 +39,13 @@ const App = () => {
     if (!authData){
       return;
     }
-    console.log('.......continue....')
     const now = new Date();
     const expiresIn = authData.expirationDate.getTime() - now.getTime();
     if (expiresIn > 0){
       login();
+    }
+    else{
+      clearAuthData();
     }
   },[]);
 
@@ -68,6 +73,7 @@ const App = () => {
   }
 
   return (
+
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,
@@ -87,8 +93,9 @@ const App = () => {
             <Route path="/home" component={Home}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/contactUs" component={ContactForm}/>
-            
-
+            <Route path="/trending" component={Trending}/>
+            <Route path="/createCategory" component={CreateCategory}/>
+            <Route path="/user/:userId" component={UserPosts}/>
           </Switch>
 
         </div>

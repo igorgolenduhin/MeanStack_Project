@@ -68,3 +68,12 @@ code {
   text-decoration: underline;
 }
 
+.no-bottom-padding{
+  padding-bottom: 0 !important;
+}
+
+.user-link{
+  color: inherit;
+  font-weight: bold;
+}
+
